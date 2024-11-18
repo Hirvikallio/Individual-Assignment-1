@@ -8,35 +8,80 @@
 </head>
 <body>
     <header>
-        <h1>Online Shopper with Color Blindness</h1>
+        <h1 id="header-title">Online Shopper with Color Blindness</h1>
+        <button id="protanopia">Protanopia (Red-Blind)</button>
+        <button id="deuteranopia">Deuteranopia (Green-Blind)</button>
+        <button id="tritanopia">Tritanopia (Blue-Blind)</button>
+        <button id="achromatopsia">Achromatopsia (No Color)</button>
     </header>
 
     <main>
+
         <section class="persona-content">
-            <img src="online.png" alt="Illustrative image of an online shopper" class="persona-image">
+            <!-- Main Image -->
+            <img id="persona-image" src="pessoa.png" alt="Illustrative image of an online shopper" class="persona-image">
             <div class="persona-info">
-                <h2>Lee: User with Color Blindness</h2>
-                <p><strong>Description:</strong> Lee is colorblind and encounters barriers when shopping online. He has difficulty distinguishing red and green colors, which appear as shades of brown to him.</p>
-                
-                <h3>Challenges Faced:</h3>
-                <ul>
-                    <li>Low color contrast in text and images.</li>
-                    <li>Use of color alone to indicate required fields and sale prices.</li>
-                    <li>Difficulty distinguishing color swatches that do not have labels with the color names.</li>
-                </ul>
-                
-                <h3>Solutions that Help Lee:</h3>
-                <ul>
-                    <li>Proper color contrast with adjustable settings.</li>
-                    <li>Use of asterisks instead of color alone to indicate required fields.</li>
-                    <li>Color swatches labeled with text (e.g., "Red," "Green," etc.) for easier identification.</li>
-                </ul>
+                <h2 id="persona-title">Lee: User with Color Blindness</h2>
+                <p id="persona-description">
+                    <strong>Description:</strong> Lee is colorblind and encounters barriers when shopping online. He has one of the most common visual disabilities that affect men: red and green color blindness. Lee frequently shops online and sometimes encounters problems on websites and with apps where the color contrast of text and images is not adequate and where color alone is used to indicate required fields and sale prices. When red and green color combinations are used, Lee cannot distinguish between the two, since both look brown to him. It is also very difficult for him to make product choices when color swatches are not labeled with the name of the color.
+                </p>
             </div>
         </section>
+
+        <section class="color-demo">
+            <h2 id="color-demo-title">Color and Alternative Indicators Demo</h2>
+            <form>
+                <label for="name">Name <span class="required">*</span></label>
+                <input id="name" type="text" required>
+                <br>
+                <label for="email">Email <span class="required">*</span></label>
+                <input id="email" type="email" required>
+                <br>
+            </form>
+
+            <!-- Decorative image with sale price -->
+            <div class="decorative-item" style="text-align: center;">
+                <img src="decor.jpg" alt="Decorative image of a sale item" style="width: 50%; border-radius: 8px; margin: 20px auto; display: block;">
+                <p style="font-size: 1.2em; font-weight: bold; color: green; margin-top: 10px;">Sale Price: $15</p>
+            </div>
+        </section>
+
+        <!-- Resize Text Buttons -->
+        <section class="resize-buttons">
+            <button id="resize-text-increase">Increase Text Size</button>
+            <button id="resize-text-decrease">Decrease Text Size</button>
+        </section>
+
+    <!-- Text-to-Speech Settings -->
+<section class="speech-controls">
+    <h2>Text-to-Speech Controls</h2>
+    <form id="speechForm">
+        <textarea id="inputTxt" class="txt" rows="3" placeholder="Enter text to read aloud"></textarea>
+        <br>
+        <label for="voiceSelect">Voice: </label>
+        <select id="voiceSelect"></select>
+        <br>
+        <label for="pitch">Pitch: </label>
+        <input id="pitch" type="range" min="0" max="2" value="1" step="0.1">
+        <span class="pitch-value">1</span>
+        <br>
+        <label for="rate">Rate: </label>
+        <input id="rate" type="range" min="0.5" max="2" value="1" step="0.1">
+        <span class="rate-value">1</span>
+        <br>
+        <button type="submit">Speak</button>
+        <button type="button" id="pauseButton">Pause</button>
+        <button type="button" id="resumeButton">Resume</button>
+    </form>
+</section>
     </main>
 
     <footer>
-        <p>Accessibility project for online shoppers.</p>
+        <p>Accessibility project for colorblind online shoppers.</p>
     </footer>
+
+    <script src="colorblind.js"></script>
+    <script src="speach.js"></script>
 </body>
+
 </html>
