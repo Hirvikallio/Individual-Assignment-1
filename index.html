@@ -5,83 +5,145 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Shopper with Color Blindness - Accessibility</title>
     <link rel="stylesheet" href="card.css">
+
+    <style>
+        /* CSS para o efeito de hover */
+        [data-speech]:hover {
+            background-color: rgba(0, 0, 255, 0.2);  /* Fundo azul claro ao passar o mouse */
+            cursor: pointer; /* Cursor de ponteiro para indicar que é clicável */
+            transition: background-color 0.3s ease; /* Transição suave para o efeito de hover */
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1 id="header-title">Online Shopper with Color Blindness</h1>
-        <button id="protanopia">Protanopia (Red-Blind)</button>
-        <button id="deuteranopia">Deuteranopia (Green-Blind)</button>
-        <button id="tritanopia">Tritanopia (Blue-Blind)</button>
-        <button id="achromatopsia">Achromatopsia (No Color)</button>
+        <h1 id="header-title" data-speech="Online Shopper with Color Blindness">Online Shopper with Color Blindness</h1>
+        <!-- Botão de Modo Escuro -->
+        <div class="dark-mode-toggle">
+            <button id="toggle-dark-mode" data-speech="Dark Mode Toggle">🌙 Dark Mode</button>
+        </div>
+        <!-- Botões de simulação de deficiência de cor -->
+        <div class="colorblind-buttons">
+            <button id="protanopia" data-speech="Protanopia: Red-Blind">Protanopia (Red-Blind)</button>
+            <button id="deuteranopia" data-speech="Deuteranopia: Green-Blind">Deuteranopia (Green-Blind)</button>
+            <button id="tritanopia" data-speech="Tritanopia: Blue-Blind">Tritanopia (Blue-Blind)</button>
+            <button id="achromatopsia" data-speech="Achromatopsia: No Color">Achromatopsia (No Color)</button>
+        </div>
     </header>
 
     <main>
-
-        <section class="persona-content">
-            <!-- Main Image -->
+        <section class="persona-content" role="region" aria-labelledby="persona-title">
             <img id="persona-image" src="pessoa.png" alt="Illustrative image of an online shopper" class="persona-image">
             <div class="persona-info">
-                <h2 id="persona-title">Lee: User with Color Blindness</h2>
-                <p id="persona-description">
-                    <strong>Description:</strong> Lee is colorblind and encounters barriers when shopping online. He has one of the most common visual disabilities that affect men: red and green color blindness. Lee frequently shops online and sometimes encounters problems on websites and with apps where the color contrast of text and images is not adequate and where color alone is used to indicate required fields and sale prices. When red and green color combinations are used, Lee cannot distinguish between the two, since both look brown to him. It is also very difficult for him to make product choices when color swatches are not labeled with the name of the color.
+                <h2 id="persona-title" data-speech="Lee: User with Color Blindness">Lee: User with Color Blindness</h2>
+                <h3 id="description-title" data-speech="Description">Description</h3>
+                <p data-speech="Lee is colorblind and encounters barriers when shopping online. He has one of the most common visual disabilities that affect men: red and green color blindness.">
+                    Lee is colorblind and encounters barriers when shopping online. He has one of the most common visual disabilities that affect men: red and green color blindness.
+                </p>
+                
+                <h3 id="challenges-title" data-speech="Challenges When Shopping Online">Challenges When Shopping Online</h3>
+                <p data-speech="Lee frequently shops online and sometimes encounters problems on websites and with apps where the color contrast of text and images is not adequate. He also struggles when color alone is used to indicate required fields and sale prices.">
+                    Lee frequently shops online and sometimes encounters problems on websites and with apps where the color contrast of text and images is not adequate. He also struggles when color alone is used to indicate required fields and sale prices.
+                </p>
+                
+                <h3 data-speech="Impact of Red-Green Color Blindness">Impact of Red-Green Color Blindness</h3>
+                <p data-speech="When red and green color combinations are used, Lee cannot distinguish between the two, since both look brown to him. This makes it difficult for him to interpret visual cues that rely solely on color differentiation.">
+                    When red and green color combinations are used, Lee cannot distinguish between the two, since both look brown to him. This makes it difficult for him to interpret visual cues that rely solely on color differentiation.
+                </p>
+                
+                <h3 data-speech="Challenges with Product Choices">Challenges with Product Choices</h3>
+                <p data-speech="It is also very difficult for Lee to make product choices when color swatches are not labeled with the name of the color. This can lead to frustration and mistakes when selecting items.">
+                    It is also very difficult for Lee to make product choices when color swatches are not labeled with the name of the color. This can lead to frustration and mistakes when selecting items.
+                </p>
+            </div>
+        </section>
+        
+        <section class="color-demo" role="region" aria-labelledby="color-demo-title">
+            <h2 id="color-demo-title" data-speech="Color and Alternative Indicators">Color and Alternative Indicators</h2>
+            <form>
+                <label for="name" data-speech="Name Field">Name <span class="required">*</span></label>
+                <input id="name" type="text" required aria-invalid="false">
+                <br>
+                <label for="email" data-speech="Email Field">Email <span class="required">*</span></label>
+                <input id="email" type="email" required aria-invalid="false">
+                <br>
+            </form>
+
+            <div class="decorative-item">
+                <img src="decor.jpg" alt="Decorative image of a sale item">
+                <p style="font-size: 1.2em; font-weight: bold; color: #005500; margin-top: 10px;" data-speech="Sale Price: $15 On Sale!">
+                    Sale Price: <strong>$15</strong> <span class="sale-indicator">(On Sale!)</span>
                 </p>
             </div>
         </section>
 
-        <section class="color-demo">
-            <h2 id="color-demo-title">Color and Alternative Indicators Demo</h2>
-            <form>
-                <label for="name">Name <span class="required">*</span></label>
-                <input id="name" type="text" required>
-                <br>
-                <label for="email">Email <span class="required">*</span></label>
-                <input id="email" type="email" required>
-                <br>
-            </form>
-
-            <!-- Decorative image with sale price -->
-            <div class="decorative-item" style="text-align: center;">
-                <img src="decor.jpg" alt="Decorative image of a sale item" style="width: 50%; border-radius: 8px; margin: 20px auto; display: block;">
-                <p style="font-size: 1.2em; font-weight: bold; color: green; margin-top: 10px;">Sale Price: $15</p>
-            </div>
-        </section>
-
-        <!-- Resize Text Buttons -->
         <section class="resize-buttons">
-            <button id="resize-text-increase">Increase Text Size</button>
-            <button id="resize-text-decrease">Decrease Text Size</button>
+            <button id="resize-text-increase" aria-label="Increase Text Size">+</button>
+            <button id="resize-text-decrease" aria-label="Decrease Text Size">−</button>
         </section>
 
-    <!-- Text-to-Speech Settings -->
-<section class="speech-controls">
-    <h2>Text-to-Speech Controls</h2>
-    <form id="speechForm">
-        <textarea id="inputTxt" class="txt" rows="3" placeholder="Enter text to read aloud"></textarea>
-        <br>
-        <label for="voiceSelect">Voice: </label>
-        <select id="voiceSelect"></select>
-        <br>
-        <label for="pitch">Pitch: </label>
-        <input id="pitch" type="range" min="0" max="2" value="1" step="0.1">
-        <span class="pitch-value">1</span>
-        <br>
-        <label for="rate">Rate: </label>
-        <input id="rate" type="range" min="0.5" max="2" value="1" step="0.1">
-        <span class="rate-value">1</span>
-        <br>
-        <button type="submit">Speak</button>
-        <button type="button" id="pauseButton">Pause</button>
-        <button type="button" id="resumeButton">Resume</button>
-    </form>
-</section>
+        <section class="speech-controls" role="region" aria-labelledby="speech-controls-title">
+            <h2 id="speech-controls-title" data-speech="Text to Speech Controls">Text-to-Speech</h2>
+            <form id="speechForm" class="tts-form">
+                <textarea id="inputTxt" class="txt" rows="2" placeholder="Enter text to read aloud"></textarea>
+                <select id="voiceSelect" class="voice-select">
+                    <option value="en-US">English (US)</option>
+                    <option value="en-GB">English (UK)</option>
+                    <option value="es-ES">Spanish (Spain)</option>
+                    <option value="pt-BR">Portuguese (Brazil)</option>
+                    <option value="fr-FR">French</option>
+                </select>
+                <div class="tts-buttons">
+                    <button type="submit" class="speak-btn" data-speech="Speak">Speak</button>
+                    <button type="button" id="pauseButton" class="pause-btn" data-speech="Pause">Pause</button>
+                    <button type="button" id="resumeButton" class="resume-btn" data-speech="Resume">Resume</button>
+                </div>
+            </form>
+        </section>
     </main>
 
-    <footer>
-        <p>Accessibility project for colorblind online shoppers.</p>
-    </footer>
+    <script>
+        // Função para ler o texto quando clicado
+        function speakText(event) {
+            const text = event.target.getAttribute('data-speech');  // Pega o texto a ser lido
+            const language = document.getElementById("voiceSelect").value;  // Pega a linguagem selecionada
+
+            if (text) {
+                const utterance = new SpeechSynthesisUtterance(text); // Cria a fala
+                utterance.lang = language; // Define o idioma para a fala
+                window.speechSynthesis.speak(utterance);  // Reproduz o texto
+            } else {
+                console.log('Texto não encontrado para leitura.');
+            }
+        }
+
+        // Seleciona todos os elementos com o atributo 'data-speech'
+        const speechElements = document.querySelectorAll('[data-speech]');
+
+        // Adiciona o evento de clique em cada elemento com 'data-speech'
+        speechElements.forEach(element => {
+            element.addEventListener('click', speakText);  // Ao clicar, o texto será lido
+        });
+    </script>
 
     <script src="colorblind.js"></script>
     <script src="speach.js"></script>
-</body>
+    <script>
+        // Botão de alternância de Modo Escuro
+        const darkModeToggle = document.getElementById('toggle-dark-mode');
 
+        // Adiciona o evento de clique ao botão
+        darkModeToggle.addEventListener('click', () => {
+            // Alterna a classe 'dark-mode' no corpo da página
+            document.body.classList.toggle('dark-mode');
+            
+            // Verifica o estado atual e atualiza o texto do botão
+            if (document.body.classList.contains('dark-mode')) {
+                darkModeToggle.textContent = '☀️ Light Mode'; // Muda para "Modo Claro"
+            } else {
+                darkModeToggle.textContent = '🌙 Dark Mode'; // Muda de volta para "Modo Escuro"
+            }
+        });
+    </script>
+</body>
 </html>
