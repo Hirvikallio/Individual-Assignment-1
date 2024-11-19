@@ -272,8 +272,8 @@ body.dark-mode header {
 
 
 body.dark-mode button {
-    background: linear-gradient(45deg, #444, #111);
-    color: #f4f4f9;
+    background: linear-gradient(45deg, #76760f, #ffe53b);
+    color: #000000;
 }
 
 body.dark-mode button:hover {
@@ -282,7 +282,7 @@ body.dark-mode button:hover {
 
 
 body.dark-mode [data-speech]:hover {
-    background-color: rgba(199, 199, 199, 0.2);
+    background-color: rgba(255, 255, 101, 0.344);
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
