@@ -25,7 +25,7 @@ body.large-text {
 header {
     text-align: center;
     padding: 20px 0;
-    background-color: #585858;
+    background-color: #686868;
     color: #FFFFFF;
     border-radius: 8px;
 
@@ -93,7 +93,7 @@ button {
     font-size: 1em;
     font-weight: bold;
     color: #ffffff;
-    background: linear-gradient(45deg, #4187c4, #09365e);
+    background: linear-gradient(45deg, #17568d, #09365e);
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -102,7 +102,7 @@ button {
 }
 
 button:hover {
-    background: linear-gradient(45deg, #09365e, #4187c4);
+    background: linear-gradient(45deg, #09365e, #17568d);
     transform: scale(1.05);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
 }
@@ -218,7 +218,7 @@ button:hover {
     padding: 10px;
     font-weight: bold;
     color: #ffffff;
-    background: linear-gradient(45deg, #4187c4, #09365e);
+    background: linear-gradient(45deg, #17568d, #09365e);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -227,7 +227,7 @@ button:hover {
 }
 
 .tts-buttons button:hover {
-    background: linear-gradient(45deg, #09365e, #4187c4);
+    background: linear-gradient(45deg, #09365e, #17568d);
     transform: scale(1.05);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
 }
@@ -272,12 +272,12 @@ body.dark-mode header {
 
 
 body.dark-mode button {
-    background: linear-gradient(45deg, #76760f, #ffe53b);
+    background: linear-gradient(45deg, #aea925, #ffe53b);
     color: #000000;
 }
 
 body.dark-mode button:hover {
-    background: linear-gradient(45deg, #111, #444);
+    background: linear-gradient(45deg, #ffe53b, #aea925);
 }
 
 
@@ -314,9 +314,14 @@ body.dark-mode .color-demo label {
     color: #000000;
 }
 
-body.dark-mode .persona-content h2,
-h3 {
-    color: #a7a7a7;
+body.dark-mode .persona-content h2 
+ {
+    color: #c1c1c1;
+}
+
+body.dark-mode .persona-content h3
+ {
+    color: #c1c1c1;
 }
 
 body.dark-mode .persona-content p {
