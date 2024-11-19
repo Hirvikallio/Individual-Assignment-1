@@ -5,24 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Shopper with Color Blindness - Accessibility</title>
     <link rel="stylesheet" href="card.css">
-
     <style>
-        /* CSS para o efeito de hover */
         [data-speech]:hover {
-            background-color: rgba(0, 0, 255, 0.2);  /* Fundo azul claro ao passar o mouse */
-            cursor: pointer; /* Cursor de ponteiro para indicar que é clicável */
-            transition: background-color 0.3s ease; /* Transição suave para o efeito de hover */
+            background-color: rgba(0, 0, 255, 0.2);  
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
     </style>
 </head>
 <body>
     <header>
         <h1 id="header-title" data-speech="Online Shopper with Color Blindness">Online Shopper with Color Blindness</h1>
-        <!-- Botão de Modo Escuro -->
         <div class="dark-mode-toggle">
-            <button id="toggle-dark-mode" data-speech="Dark Mode Toggle">🌙 Dark Mode</button>
+            <button id="toggle-dark-mode">🌙 Dark Mode</button>
         </div>
-        <!-- Botões de simulação de deficiência de cor -->
         <div class="colorblind-buttons">
             <button id="protanopia" data-speech="Protanopia: Red-Blind">Protanopia (Red-Blind)</button>
             <button id="deuteranopia" data-speech="Deuteranopia: Green-Blind">Deuteranopia (Green-Blind)</button>
@@ -71,7 +67,7 @@
 
             <div class="decorative-item">
                 <img src="decor.jpg" alt="Decorative image of a sale item">
-                <p style="font-size: 1.2em; font-weight: bold; color: #005500; margin-top: 10px;" data-speech="Sale Price: $15 On Sale!">
+                <p style="font-size: 1.2em; font-weight: bold; color: #018d01; margin-top: 10px;" data-speech="Sale Price: $15 On Sale!">
                     Sale Price: <strong>$15</strong> <span class="sale-indicator">(On Sale!)</span>
                 </p>
             </div>
@@ -82,16 +78,15 @@
             <button id="resize-text-decrease" aria-label="Decrease Text Size">−</button>
         </section>
 
+        <button class="speech-controls-button">🔊</button>
+
         <section class="speech-controls" role="region" aria-labelledby="speech-controls-title">
             <h2 id="speech-controls-title" data-speech="Text to Speech Controls">Text-to-Speech</h2>
             <form id="speechForm" class="tts-form">
                 <textarea id="inputTxt" class="txt" rows="2" placeholder="Enter text to read aloud"></textarea>
                 <select id="voiceSelect" class="voice-select">
-                    <option value="en-US">English (US)</option>
-                    <option value="en-GB">English (UK)</option>
-                    <option value="es-ES">Spanish (Spain)</option>
-                    <option value="pt-BR">Portuguese (Brazil)</option>
-                    <option value="fr-FR">French</option>
+
+                    <!-- Voice options-->
                 </select>
                 <div class="tts-buttons">
                     <button type="submit" class="speak-btn" data-speech="Speak">Speak</button>
@@ -103,47 +98,43 @@
     </main>
 
     <script>
-        // Função para ler o texto quando clicado
-        function speakText(event) {
-            const text = event.target.getAttribute('data-speech');  // Pega o texto a ser lido
-            const language = document.getElementById("voiceSelect").value;  // Pega a linguagem selecionada
 
-            if (text) {
-                const utterance = new SpeechSynthesisUtterance(text); // Cria a fala
-                utterance.lang = language; // Define o idioma para a fala
-                window.speechSynthesis.speak(utterance);  // Reproduz o texto
+        function speakText(event) {
+            const text = event.target.getAttribute('data-speech');
+            if (!text) {
+                console.error("No text found to speak.");
+                return;
+            }
+
+            const language = "en-US"; 
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = language; 
+            
+            // Check if SpeechSynthesis is available
+            if (window.speechSynthesis) {
+                window.speechSynthesis.speak(utterance); // Speak text
             } else {
-                console.log('Texto não encontrado para leitura.');
+                console.error("SpeechSynthesis is not supported.");
             }
         }
 
-        // Seleciona todos os elementos com o atributo 'data-speech'
+        // event listeners 
         const speechElements = document.querySelectorAll('[data-speech]');
-
-        // Adiciona o evento de clique em cada elemento com 'data-speech'
         speechElements.forEach(element => {
-            element.addEventListener('click', speakText);  // Ao clicar, o texto será lido
+            element.addEventListener('click', speakText);
+        });
+
+        // Dark mode 
+        const darkModeToggle = document.getElementById('toggle-dark-mode');
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            darkModeToggle.textContent = document.body.classList.contains('dark-mode')
+                ? '☀️ Light Mode'
+                : '🌙 Dark Mode';
         });
     </script>
 
     <script src="colorblind.js"></script>
     <script src="speach.js"></script>
-    <script>
-        // Botão de alternância de Modo Escuro
-        const darkModeToggle = document.getElementById('toggle-dark-mode');
-
-        // Adiciona o evento de clique ao botão
-        darkModeToggle.addEventListener('click', () => {
-            // Alterna a classe 'dark-mode' no corpo da página
-            document.body.classList.toggle('dark-mode');
-            
-            // Verifica o estado atual e atualiza o texto do botão
-            if (document.body.classList.contains('dark-mode')) {
-                darkModeToggle.textContent = '☀️ Light Mode'; // Muda para "Modo Claro"
-            } else {
-                darkModeToggle.textContent = '🌙 Dark Mode'; // Muda de volta para "Modo Escuro"
-            }
-        });
-    </script>
 </body>
 </html>
