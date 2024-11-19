@@ -11,9 +11,40 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background-color: #000;
+            color: #fff;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 1000;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        body {
+            background-color: #fff; 
+            color: #333; 
+        }
+
+        .required {
+            color: #c00; 
+        }
+
+        .sale-indicator {
+            color: #018d01; 
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
+    <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+
     <header>
         <h1 id="header-title" data-speech="Online Shopper with Color Blindness">Online Shopper with Color Blindness</h1>
         <div class="dark-mode-toggle">
@@ -27,27 +58,27 @@
         </div>
     </header>
 
-    <main>
+    <main id="conteudo-principal">
         <section class="persona-content" role="region" aria-labelledby="persona-title">
-            <img id="persona-image" src="pessoa.png" alt="Illustrative image of an online shopper" class="persona-image">
+            <img id="persona-image" src="pessoa.png" alt="Illustration of Lee, a colorblind user" class="persona-image">
             <div class="persona-info">
                 <h2 id="persona-title" data-speech="Lee: User with Color Blindness">Lee: User with Color Blindness</h2>
-                <h3 id="description-title" data-speech="Description">Description</h3>
+                <h3 id="description-title" data-speech="Description">- Description</h3>
                 <p data-speech="Lee is colorblind and encounters barriers when shopping online. He has one of the most common visual disabilities that affect men: red and green color blindness.">
                     Lee is colorblind and encounters barriers when shopping online. He has one of the most common visual disabilities that affect men: red and green color blindness.
                 </p>
                 
-                <h3 id="challenges-title" data-speech="Challenges When Shopping Online">Challenges When Shopping Online</h3>
+                <h3 id="challenges-title" data-speech="Challenges When Shopping Online">- Challenges When Shopping Online</h3>
                 <p data-speech="Lee frequently shops online and sometimes encounters problems on websites and with apps where the color contrast of text and images is not adequate. He also struggles when color alone is used to indicate required fields and sale prices.">
                     Lee frequently shops online and sometimes encounters problems on websites and with apps where the color contrast of text and images is not adequate. He also struggles when color alone is used to indicate required fields and sale prices.
                 </p>
                 
-                <h3 data-speech="Impact of Red-Green Color Blindness">Impact of Red-Green Color Blindness</h3>
+                <h3 data-speech="Impact of Red-Green Color Blindness">- Impact of Red-Green Color Blindness</h3>
                 <p data-speech="When red and green color combinations are used, Lee cannot distinguish between the two, since both look brown to him. This makes it difficult for him to interpret visual cues that rely solely on color differentiation.">
                     When red and green color combinations are used, Lee cannot distinguish between the two, since both look brown to him. This makes it difficult for him to interpret visual cues that rely solely on color differentiation.
                 </p>
                 
-                <h3 data-speech="Challenges with Product Choices">Challenges with Product Choices</h3>
+                <h3 data-speech="Challenges with Product Choices">- Challenges with Product Choices</h3>
                 <p data-speech="It is also very difficult for Lee to make product choices when color swatches are not labeled with the name of the color. This can lead to frustration and mistakes when selecting items.">
                     It is also very difficult for Lee to make product choices when color swatches are not labeled with the name of the color. This can lead to frustration and mistakes when selecting items.
                 </p>
@@ -58,16 +89,17 @@
             <h2 id="color-demo-title" data-speech="Color and Alternative Indicators">Color and Alternative Indicators</h2>
             <form>
                 <label for="name" data-speech="Name Field">Name <span class="required">*</span></label>
-                <input id="name" type="text" required aria-invalid="false">
+                <input id="name" type="text" required aria-required="true" aria-labelledby="name">
                 <br>
                 <label for="email" data-speech="Email Field">Email <span class="required">*</span></label>
-                <input id="email" type="email" required aria-invalid="false">
+                <input id="email" type="email" required aria-required="true" aria-labelledby="email">
                 <br>
+                <button type="submit">Submit</button>
             </form>
 
             <div class="decorative-item">
-                <img src="decor.jpg" alt="Decorative image of a sale item">
-                <p style="font-size: 1.2em; font-weight: bold; color: #018d01; margin-top: 10px;" data-speech="Sale Price: $15 On Sale!">
+                <img src="decor.jpg" alt="Decorative image showing a sale item">
+                <p style="font-size: 1.2em; font-weight: bold; color: #006f00; margin-top: 10px;" data-speech="Sale Price: $15 On Sale!">
                     Sale Price: <strong>$15</strong> <span class="sale-indicator">(On Sale!)</span>
                 </p>
             </div>
@@ -85,8 +117,7 @@
             <form id="speechForm" class="tts-form">
                 <textarea id="inputTxt" class="txt" rows="2" placeholder="Enter text to read aloud"></textarea>
                 <select id="voiceSelect" class="voice-select">
-
-                    <!-- Voice options-->
+                    <!-- Voice options -->
                 </select>
                 <div class="tts-buttons">
                     <button type="submit" class="speak-btn" data-speech="Speak">Speak</button>
@@ -98,7 +129,6 @@
     </main>
 
     <script>
-
         function speakText(event) {
             const text = event.target.getAttribute('data-speech');
             if (!text) {
@@ -110,21 +140,18 @@
             const utterance = new SpeechSynthesisUtterance(text);
             utterance.lang = language; 
             
-            // Check if SpeechSynthesis is available
             if (window.speechSynthesis) {
-                window.speechSynthesis.speak(utterance); // Speak text
+                window.speechSynthesis.speak(utterance);
             } else {
                 console.error("SpeechSynthesis is not supported.");
             }
         }
 
-        // event listeners 
         const speechElements = document.querySelectorAll('[data-speech]');
         speechElements.forEach(element => {
             element.addEventListener('click', speakText);
         });
 
-        // Dark mode 
         const darkModeToggle = document.getElementById('toggle-dark-mode');
         darkModeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
@@ -133,7 +160,6 @@
                 : '🌙 Dark Mode';
         });
     </script>
-
     <script src="colorblind.js"></script>
     <script src="speach.js"></script>
 </body>
